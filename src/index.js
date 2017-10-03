@@ -9,8 +9,10 @@ import reducers from './reducers';
 import App from './components/app';
 import Login from './containers/auth/Login';
 import Register from './containers/auth/Register';
+import Signout from './containers/auth/Signout';
 import RequireAuth from './containers/auth/RequireAuth';
 import Dashboard from './containers/Dashboard';
+import Main from './containers/Main';
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 
@@ -28,10 +30,13 @@ ReactDOM.render(
   <Provider store={store}>
   <MuiThemeProvider>
     <Router history={browserHistory}>
-      <Route path="/" component={App} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/dashboard" component={RequireAuth(Dashboard)} />
+      <Route path="/" component={App}>
+        <IndexRoute component={Main} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/signout" component={Signout} />
+        <Route path="/dashboard" component={RequireAuth(Dashboard)} />
+      </Route>
     </Router>
   </MuiThemeProvider>
   </Provider>

@@ -15,11 +15,9 @@ class Login extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
-        <div>
-          <Link to='/register'>Register</Link>
-        </div>
-        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+      <div className="login-container">
+        <h2 className="title">Login</h2>
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="form-container">
           <div>
             <Field name="email" label="Email" component={renderTextField} type="email"/>
           </div>
@@ -28,8 +26,11 @@ class Login extends Component {
           </div>
           <br />
           <br />
-          <RaisedButton type="submit">Submit</RaisedButton>
+          <RaisedButton type="submit" fullWidth={true}>Submit</RaisedButton>
         </form>
+        <div className="link-string">
+          <Link to='/register'><b>Register</b></Link> for an account
+        </div>
       </div>
     )
   }

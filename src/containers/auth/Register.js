@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class Register extends Component {
   handleFormSubmit(formProps) {
-    console.log('formProps: ', formProps);
+    // console.log('formProps: ', formProps);
     this.props.register(formProps);
   }
 
@@ -15,23 +15,26 @@ class Register extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <div>
-          <Field name="firstName" label="First Name" component={renderTextField} type="text"/>
-        </div>
-        <div>
-          <Field name="lastName" label="Last Name" component={renderTextField} type="text"/>
-        </div>
-        <div>
-          <Field name="email" label="Email" component={renderTextField} type="email"/>
-        </div>
-        <div>
-          <Field name="password" label="Password" component={renderTextField} type="password"/>
-        </div>
-        <br />
-        <br />
-        <RaisedButton type="submit">Submit</RaisedButton>
-      </form>
+      <div className="register-container">
+        <h2 className="title">Create an Account</h2>
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="form-container">
+          <div>
+            <Field name="firstName" label="First Name" component={renderTextField} type="text"/>
+          </div>
+          <div>
+            <Field name="lastName" label="Last Name" component={renderTextField} type="text"/>
+          </div>
+          <div>
+            <Field name="email" label="Email" component={renderTextField} type="email"/>
+          </div>
+          <div>
+            <Field name="password" label="Password" component={renderTextField} type="password"/>
+          </div>
+          <br />
+          <br />
+          <RaisedButton type="submit" fullWidth={true}>Submit</RaisedButton>
+        </form>
+      </div>
     )
   }
 }
