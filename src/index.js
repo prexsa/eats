@@ -13,6 +13,7 @@ import Signout from './containers/auth/Signout';
 import RequireAuth from './containers/auth/RequireAuth';
 import Dashboard from './containers/Dashboard';
 import Main from './containers/Main';
+import RestaurantDetails from './containers/RestaurantDetails';
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 
@@ -36,6 +37,7 @@ ReactDOM.render(
         <Route path="/register" component={Register} />
         <Route path="/signout" component={Signout} />
         <Route path="/dashboard" component={RequireAuth(Dashboard)} />
+        <Route path="/restaurantdetails" component={RestaurantDetails} />
       </Route>
     </Router>
   </MuiThemeProvider>

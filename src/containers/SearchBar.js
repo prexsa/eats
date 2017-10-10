@@ -77,9 +77,9 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(null, mapDispatchToProps)(SearchBar);
 
-window.addEventListener('load', () => {
+/*window.addEventListener('load', () => {
   let script = document.createElement('script');
   script.type = 'text/javascript';
   script.src  = `https://maps.googleapis.com/maps/api/js?key=${googleapi}&libraries=places`;
   document.body.appendChild(script);
-});
+});*/

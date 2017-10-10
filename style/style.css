@@ -84,29 +84,23 @@ a {
   text-align: center;
 }
 
-.bg {
-  background-image: url('../assets/pointer_map.jpg');
-  min-height: 700px; 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .title {
   text-align: center;
-}
-
-.app-search-container {
-  position: relative;
-  top: 250px;
 }
 
 .header-container {
   width: 900px;
   margin: 0px auto;
   font-size: 13px;
-  background-color: #333;
-  border: 1px solid #a0a0a0;
+  text-align: center;
+}
+
+.header-container h1 {
+  font-size: 3.5em;
+}
+
+.phrase {
+  text-align: center;
 }
 
 .access-container {
@@ -143,6 +137,11 @@ a {
 .details {
   line-height: 1.75;
   text-align: left;
+}
+
+.google-maps {
+  margin: 0 auto;
+  width: 800px;
 }
 
 .map-container {
@@ -268,4 +267,9 @@ a {
 .link-string {
   font-size: 12px;
   text-align: center;
+}
+
+.review-list-container {
+  width: 860px;
+  margin: 0 auto;
 }

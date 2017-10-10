@@ -25,13 +25,10 @@ class Area extends Component {
       return <div></div>;
     }
 
-    // const businesses = geolocation[0].businesses[0];
-    console.log('businesses: ', geolocation[0].businesses)
     const businesses = geolocation[0].businesses;
 
     return (
       <div className="area-container">
-        <h2>In Your Area</h2>
         {/*<div>
           <RadioButtonGroup name="filters" labelPosition="left" style={style.rbg}>
             <RadioButton label="Most Reviewed" style={{display: 'inline-block'}} iconStyle={{"marginLeft": -5}} />

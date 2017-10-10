@@ -12,7 +12,7 @@ class Login extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div className="login-container">
@@ -26,7 +26,7 @@ class Login extends Component {
           </div>
           <br />
           <br />
-          <RaisedButton type="submit" fullWidth={true}>Submit</RaisedButton>
+          <RaisedButton type="submit" fullWidth={true} disabled={pristine || submitting}>Submit</RaisedButton>
         </form>
         <div className="link-string">
           <Link to='/register'><b>Register</b></Link> for an account
@@ -37,7 +37,8 @@ class Login extends Component {
 }
 
 Login = reduxForm({
-  form: 'login'
+  form: 'login',
+  validate
 })(Login);
 
 export default Login = connect(null, actions)(Login);
@@ -50,3 +51,17 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
     {...custom}
   />
 )
+
+const validate = values => {
+  const errors = {};
+  const requiredFields = [ 'firstName', 'lastName', 'email', 'password' ];
+  requiredFields.forEach(field => {
+    if (!values[ field ]) {
+      errors[ field ] = 'Required';
+    }
+  })
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
+}

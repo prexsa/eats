@@ -12,7 +12,7 @@ class Register extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div className="register-container">
@@ -32,7 +32,7 @@ class Register extends Component {
           </div>
           <br />
           <br />
-          <RaisedButton type="submit" fullWidth={true}>Submit</RaisedButton>
+          <RaisedButton type="submit" fullWidth={true} disabled={pristine || submitting}>Submit</RaisedButton>
         </form>
       </div>
     )
@@ -40,7 +40,8 @@ class Register extends Component {
 }
 
 Register = reduxForm({
-  form: 'register'
+  form: 'register',
+  validate
 })(Register);
 
 export default Register = connect(null, actions)(Register);
@@ -54,3 +55,17 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
     {...custom}
   />
 )
+
+const validate = values => {
+  const errors = {};
+  const requiredFields = [ 'firstName', 'lastName', 'email', 'password' ];
+  requiredFields.forEach(field => {
+    if (!values[ field ]) {
+      errors[ field ] = 'Required';
+    }
+  })
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
+}
