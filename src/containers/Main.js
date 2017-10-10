@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchGeolocationArea } from '../actions/index';
+import { getlocation, fetchGeolocationArea } from '../actions/index';
 import ExploreArea from '../containers/ExploreArea';
 import GoogleMaps from '../components/GoogleMap';
 
@@ -30,11 +30,14 @@ class Main extends Component {
       const lng = location[0].coords.longitude;
 
       const coords = { lat, lng };
-
       this.props.fetchGeolocationArea(coords);
       return true;
     }
     return false;
+  }
+
+  componentDidMount() {
+    this.props.getlocation();
   }
 
   render() {
@@ -54,7 +57,7 @@ class Main extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchGeolocationArea }, dispatch)
+  return bindActionCreators({ fetchGeolocationArea, getlocation }, dispatch)
 }
 
 function mapStateToProps({ location, geolocation }) {

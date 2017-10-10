@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getlocation } from '../actions/index';
 import { googleapi } from '../../config';
 import { Link } from 'react-router';
 import Header from './Header';
 import SearchBar from '../containers/searchBar';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.getlocation();
-  }
-
   render() {
     return (
       <div>
@@ -20,7 +14,7 @@ class App extends Component {
           <Link to="/"><h1>Eats</h1></Link>
         </div>
         <p className="phrase">
-          Can't Decide From The List, Enter A Seach Location...
+          Can't Decide, Enter A Seach Location...
         </p>
         <SearchBar />
         {this.props.children}
@@ -29,16 +23,11 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators ({ getlocation }, dispatch)
-}
-
-
 const mapStateToProps = ({ auth }) => {
   return { auth };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 
 /*window.addEventListener('load', () => {
   let script = document.createElement('script');

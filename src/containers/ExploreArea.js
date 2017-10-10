@@ -29,13 +29,6 @@ class Area extends Component {
 
     return (
       <div className="area-container">
-        {/*<div>
-          <RadioButtonGroup name="filters" labelPosition="left" style={style.rbg}>
-            <RadioButton label="Most Reviewed" style={{display: 'inline-block'}} iconStyle={{"marginLeft": -5}} />
-            <RadioButton label="Highest Ratings" style={{display: 'inline-block'}} iconStyle={{"marginLeft": -5}} />
-            <RadioButton label="Lowest Price" style={{display: 'inline-block'}} iconStyle={{"marginLeft": -5}} />
-          </RadioButtonGroup>
-        </div>*/}
         <List>
           {
             businesses.map(business => {

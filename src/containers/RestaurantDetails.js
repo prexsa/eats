@@ -9,7 +9,6 @@ import CommunicationCall from 'material-ui/svg-icons/communication/call';
 import CommunicationLocation from 'material-ui/svg-icons/communication/location-on';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 import MapsRateReview from 'material-ui/svg-icons/maps/rate-review';
-/*import SearchBar from '../containers/SearchBar';*/
 import Hours from '../containers/Hours';
 import Reviews from '../containers/Reviews';
 
@@ -18,15 +17,17 @@ const mapStyle = {
   height: 580
 };
 
+const randomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 class RestaurantDetails extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       selected: []
     }
   }
-  
   componentDidMount() {
     if(this.props.restaurants.length <= 0) {
       return <div>Testing map</div>;
@@ -46,13 +47,44 @@ class RestaurantDetails extends Component {
       position: coordinates,
       map: map
     })
+  }
+  
+  componentWillUpdate() {
+    if(this.props.restaurants.length <= 0) {
+      return <div>Testing map</div>;
+    }
+    const data = this.props.restaurants[0].businesses;
+    const lat = data[0].coordinates.latitude;
+    const lng = data[0].coordinates.longitude;
     
+    const coordinates = {lat: lat, lng: lng };
+
+    const map = new google.maps.Map(this.refs.map , {
+      zoom: 15, 
+      center: coordinates
+    })
+
+    const marker = new google.maps.Marker({
+      position: coordinates,
+      map: map
+    })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log('nextProps: ', nextProps.restaurants[0])
+    const restaurantList = nextProps.restaurants[0].businesses;
+    const value = randomInt(0, 19);
+    const chosen = restaurantList[value];
+    //console.log('chosenL ', chosen)
+    this.setState({ selected: chosen });
+    return true;
   }
 
   render() {
+    console.log('this.state: ', this.state)
     const { restaurants } = this.props;
     if(!restaurants[0]) {
-      return <div>Testing</div>;
+      return <div></div>;
     }
     //console.log('business: ', restaurants[0].businesses);
     const businesses = restaurants[0].businesses;
@@ -102,21 +134,18 @@ class RestaurantDetails extends Component {
                   leftIcon={<CommunicationLocation color="#f75c54" />}
                   disabled={true} 
                 />
-                <ListItem  hoverColor='#fff' style={{'marginLeft': 55}} leftIcon={<MapsRateReview color="#f75c54" />}>
-                  <span style={{"position": "relative", "top": 5}}>
+                <ListItem  hoverColor='#fff' leftIcon={<MapsRateReview color="#f75c54" />}>
+                  <span>
                     <svg width="60" height="25">
                       <text x="0" y="20" stroke="#f77a52" fontSize="16"> {rating} / 5 </text>
                     </svg>
                   </span>
                   <span>
-                    &nbsp;({reviewCount} Reviews)
+                    <svg width="160" height="25">
+                      <text x="0" y="20" stroke="#f77a52" fontSize="16"> ({reviewCount} Reviews) </text>
+                    </svg>
                   </span>
                 </ListItem>
-                <ListItem 
-                  primaryText='Ratings'
-                  leftIcon={<MapsRateReview color="#f75c54" />}
-                  disabled={true}
-                />
                 <ListItem 
                   primaryText={<Hours />}
                   leftIcon={<ActionSchedule color="#f75c54" />}

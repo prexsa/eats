@@ -9,7 +9,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes.js');
 
-mongoose.connect('mongodb://localhost:auth/auth');
+// mongoose.connect('mongodb://localhost:auth/auth');
 
 const app = express();
 
