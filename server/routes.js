@@ -15,7 +15,7 @@ module.exports = (app) => {
   app.post('/login', requireLogin, Authentication.login);
   app.post('/register', Authentication.register);
 
-  app.post('/geolocation', (req, res) => {
+  app.post('/api/geolocation', (req, res) => {
     const latitude = req.body.geoCoords.lat;
     const longitude = req.body.geoCoords.lng;
 
@@ -28,7 +28,7 @@ module.exports = (app) => {
       });
   });
 
-  app.post('/search', (req, res) => {
+  app.post('/api/search', (req, res) => {
     const area = req.body.area;
     yelp.searchBusiness({ term: "food, restaurants", location: area })
       .then(function (data) {
@@ -39,7 +39,7 @@ module.exports = (app) => {
     });
   });
 
-  app.post('/hours', (req, res) => {
+  app.post('/api/hours', (req, res) => {
     const id = req.body.id;
     yelp.getBusinessById(id)
       .then(function (data) {
@@ -50,7 +50,7 @@ module.exports = (app) => {
       });
     });
 
-  app.post('/reviews', (req, res) => {
+  app.post('/api/reviews', (req, res) => {
     const id = req.body.id;
     yelp.getReviews(id)
       .then(function(data) {
@@ -61,7 +61,7 @@ module.exports = (app) => {
       });
     });
 
-  app.post('/yelplink', (req, res) => {
+  app.post('/api/yelplink', (req, res) => {
     const yelpUrl = req.body.urlLink;
     axios.get(yelpUrl)
       .then((resp) => {

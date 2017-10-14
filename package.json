@@ -2,14 +2,25 @@
   "name": "eats",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
+  "engines": {
+    "node": "8.1.1",
+    "npm": "5.0.3"
+  },
   "license": "ISC",
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
     "prod": "webpack -p"
   },
   "author": "",
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:3090"
+    }
+  },
   "dependencies": {
     "axios": "^0.16.1",
     "babel-core": "^6.24.1",

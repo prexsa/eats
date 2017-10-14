@@ -12,7 +12,7 @@ import {
   FETCH_GEOLOCATION_AREA,
   GET_LOCATION
 } from './types';
-
+/*
 
 const ROOT_URL = 'http://localhost:3090';
 
@@ -50,7 +50,7 @@ export function logout() {
     dispatch({ type: UNAUTH_USER });
     browserHistory.push('/');
   }
-}
+}*/
 
 export function getlocation() {
   return function(dispatch) {
@@ -76,7 +76,7 @@ export function getlocation() {
 export function fetchRestaurant(area) {
   // console.log('area: ', area)
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/search`, { area })
+    axios.post(`/api/search`, { area })
       .then(resp => {
         dispatch({
           type: FETCH_RESTAURANT,
@@ -91,9 +91,9 @@ export function fetchRestaurant(area) {
 }
 
 export function fetchGeolocationArea(geoCoords) {
-  // console.log('geoCoords: ', geoCoords)
+  //console.log('geoCoords: ', geoCoords)
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/geolocation`, { geoCoords })
+    axios.post(`/api/geolocation`, { geoCoords })
       .then(resp => {
         dispatch({
           type: FETCH_GEOLOCATION_AREA,
@@ -108,7 +108,7 @@ export function fetchGeolocationArea(geoCoords) {
 
 export function fetchBusinessHours(id) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/hours`, {id})
+    axios.post(`/api/hours`, {id})
       .then(resp => {
         dispatch({
           type: FETCH_BUSINESS_HOURS,
@@ -123,7 +123,7 @@ export function fetchBusinessHours(id) {
 
 export function fetchBusinessReviews(id) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/reviews`, {id})
+    axios.post(`/api/reviews`, {id})
       .then(resp => {
         dispatch({
           type: FETCH_BUSINESS_REVIEWS,
@@ -138,7 +138,7 @@ export function fetchBusinessReviews(id) {
 
 export function fetchScrape(urlLink) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/yelplink`, { urlLink })
+    axios.post(`/api/yelplink`, { urlLink })
       .then(resp => {
         dispatch({
           type: FETCH_SCRAPE,
