@@ -1,10 +1,10 @@
-const passport = require('passport');
+/*const passport = require('passport');
 const Authentication = require('./controllers/Authentication');
-const passportService = require('./services/passport');
+const passportService = require('./services/passport');*/
 const Yelp = require('node-yelp-api-v3');
 var { yelpv3 } = require('../config.js');
 
-const requireLogin = passport.authenticate('local', { session: false });
+/*const requireLogin = passport.authenticate('local', { session: false });*/
 
 const yelp = new Yelp({
   consumer_key: yelpv3.app_id,
@@ -12,8 +12,8 @@ const yelp = new Yelp({
 })
 
 module.exports = (app) => {
-  app.post('/login', requireLogin, Authentication.login);
-  app.post('/register', Authentication.register);
+  /*app.post('/login', requireLogin, Authentication.login);
+  app.post('/register', Authentication.register);*/
 
   app.post('/api/geolocation', (req, res) => {
     const latitude = req.body.geoCoords.lat;
