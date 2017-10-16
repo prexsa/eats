@@ -1,5 +1,12 @@
 **/node_modules
 **/bundle.js
 **/npm-debug.log
-**/config.js
 **/.env
+**/.DS_Store
+
+# IntelliJ
+*.iml
+**/.idea
+
+# config.js
+config.js
