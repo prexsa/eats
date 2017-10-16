@@ -2,7 +2,7 @@
 const Authentication = require('./controllers/authentication');
 const passportService = require('./services/passport');*/
 const Yelp = require('node-yelp-api-v3');
-var { yelpv3 } = require('/config.js');
+var { yelpv3 } = require('./config.js');
 
 /*const requireLogin = passport.authenticate('local', { session: false });*/
 
