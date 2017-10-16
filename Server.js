@@ -12,12 +12,19 @@ const routes = require('./routes.js');
 // mongoose.connect('mongodb://localhost:auth/auth');
 
 const app = express();
+const indexPath = path.join(__dirname, 'index.html');
+const publicPath = express.static(path.join(__dirname, 'public'));
 
 app.set('port', (process.env.PORT || 3090));
 // app.use(morgan('combined')); // logging incoming request from the server
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json({ type: '*/*'}));
+
+app.use('/public', publicPath);
+/*app.use('/', (_, res) => {
+  res.sendFile(indexPath);
+})*/
 
 routes(app);
 
