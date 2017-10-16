@@ -1,5 +1,5 @@
 /*const passport = require('passport');
-const Authentication = require('./controllers/Authentication');
+const Authentication = require('./controllers/authentication');
 const passportService = require('./services/passport');*/
 const Yelp = require('node-yelp-api-v3');
 var { yelpv3 } = require('../config.js');
