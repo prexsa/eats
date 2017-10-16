@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/prexsa/eats/issues"
   },
-  "homepage": "https://github.com/prexsa/eats#readme",
+  "homepage": "https://prex-eats.herokuapp.com/",
   "dependencies": {
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.0",
