@@ -1,19 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
-import './styles/app.scss';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import reducers from './reducers';
+import App from './components/App';
+import Login from './containers/auth/Login';
+import Register from './containers/auth/Register';
+import Signout from './containers/auth/Signout';
+import RequireAuth from './containers/auth/RequireAuth';
+import Dashboard from './containers/Dashboard';
+import Main from './containers/Main';
+import RestaurantDetails from './containers/RestaurantDetails';
 
-import NavBar from './navigation-bar';
+import { AUTH_USER, UNAUTH_USER } from './actions/types';
 
-const App = () => (
-  <Router>
-    <Route path='/' component={NavBar} />
-  </Router>
-);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
+const token = localStorage.getItem('token');
 
-export default App;
-ReactDOM.render(<App />, document.getElementById('root'));
+store.dispatch({ type: UNAUTH_USER });
+
+if(token) {
+  store.dispatch({ type: AUTH_USER });
+}
+
+ReactDOM.render(
+  <Provider store={store}>
+  <MuiThemeProvider>
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Main} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/signout" component={Signout} />
+        <Route path="/dashboard" component={RequireAuth(Dashboard)} />
+        <Route path="/restaurantdetails" component={RestaurantDetails} />
+      </Route>
+    </Router>
+  </MuiThemeProvider>
+  </Provider>
+  , document.querySelector('.container'));
