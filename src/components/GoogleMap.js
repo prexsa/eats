@@ -16,15 +16,14 @@ class GoogleMaps extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    
-    this.setState({list: nextProps.list});
     if(nextProps.list === undefined) {
       return false;
     }
-    const businessList = nextProps.list.businesses;
+    this.setState({list: nextProps.list});
+    const businessList = nextProps.list;
 
-    const lat = nextProps.list.region.center.latitude;
-    const lng = nextProps.list.region.center.longitude;
+    const lat = nextProps.geocenter.lat;
+    const lng = nextProps.geocenter.lng;
     
     const coordinates = {lat: lat, lng: lng };
 

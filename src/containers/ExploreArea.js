@@ -20,13 +20,12 @@ const style = {
 class Area extends Component {
   render() {
     const { geolocation } = this.props;
-
-    if(!geolocation[0]) {
-      return <div></div>;
+    if(!geolocation.businesses) {
+      return <div>No Data From Geolocation</div>;
     }
 
-    const businesses = geolocation[0].businesses;
-
+    const businesses = geolocation.businesses;
+    
     return (
       <div className="area-container">
         <List>
