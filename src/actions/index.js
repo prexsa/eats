@@ -10,7 +10,8 @@ import {
   FETCH_BUSINESS_REVIEWS,
   FETCH_SCRAPE,
   FETCH_GEOLOCATION_AREA,
-  GET_LOCATION
+  GET_LOCATION,
+  GET_FOURSQUARES
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -51,6 +52,19 @@ export function logout() {
     browserHistory.push('/');
   }
 }*/
+
+export function getFoursquares() {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/foursquare`)
+      .then(resp => {
+        console.log('resp: ', resp.data)
+        dispatch({
+          type: GET_FOURSQUARES,
+          payload: resp.data
+        })
+      })
+  }
+}
 
 export function getlocation() {
   return function(dispatch) {

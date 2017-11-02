@@ -2,7 +2,10 @@
 const Authentication = require('./controllers/authentication');
 const passportService = require('./services/passport');*/
 const Yelp = require('node-yelp-api-v3');
-var { yelpv3 } = require('../config.js');
+const { foursquare, yelpv3 } = require('../config.js');
+const axios = require('axios');
+const querystring = require('querystring');
+
 
 /*const requireLogin = passport.authenticate('local', { session: false });*/
 
@@ -14,6 +17,27 @@ const yelp = new Yelp({
 module.exports = (app) => {
   /*app.post('/login', requireLogin, Authentication.login);
   app.post('/register', Authentication.register);*/
+
+  app.get('/foursquare', (req, res) => {
+    let hostStr = `https://api.foursquare.com/v2/venues/explore?`;
+    let params = querystring.stringify({
+      v: 20170101,
+      client_id: foursquare.clientId,
+      client_secret: foursquare.clientSecret,
+      ll: '40.7243,-74.0018',
+      query: 'coffee',
+      limit: 1
+    });
+    
+    let queryStr = hostStr.concat(params);
+    axios.get(queryStr)
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  })
 
   app.post('/api/geolocation', (req, res) => {
     const latitude = req.body.geoCoords.lat;

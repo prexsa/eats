@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getlocation, fetchGeolocationArea } from '../actions/index';
+import { getlocation, fetchGeolocationArea, getFoursquares } from '../actions/index';
 //import { googleapi } from '../../config';
 import { Link } from 'react-router';
 /*import Header from './Header';*/
 import SearchBar from '../containers/SearchBar';
+import Foursquare from '../containers/foursquare';
 
 class App extends Component {
   componentDidMount() {
     this.props.getlocation();
+    this.props.getFoursquares();
   }
 
   render() {
@@ -23,6 +25,7 @@ class App extends Component {
           Can't Decide, Enter A Seach Location...
         </p>
         <SearchBar />
+        <Foursquare />
         {this.props.children}
       </div>
     );
@@ -30,7 +33,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getlocation, fetchGeolocationArea }, dispatch)
+  return bindActionCreators({ getlocation, fetchGeolocationArea, getFoursquares }, dispatch)
 }
 
 const mapStateToProps = ({ auth }) => {

@@ -8,3 +8,4 @@ export const FETCH_BUSINESS_REVIEWS = 'fetch_business_reviews';
 export const FETCH_SCRAPE = 'fetch_scrape';
 export const FETCH_GEOLOCATION_AREA = 'fetch_geolocation_area';
 export const GET_LOCATION = 'get_location';
+export const GET_FOURSQUARES = 'get_foursquares';
