@@ -8,25 +8,13 @@ import Header from './Header';
 import SearchBar from '../containers/SearchBar';
 import Foursquare from '../containers/foursquare';
 import HotAndNew from '../containers/hotAndNew';
-import GoogleMap from '../components/GoogleMap';
-
-import { Grid } from 'semantic-ui-react'
 
 class App extends Component {
   render() {
     return (
       <div>
         <Header />
-        <Grid>
-          <Grid.Row>
-            <Grid.Column>
-              <Foursquare />
-            </Grid.Column>
-            <Grid.Column>
-              <GoogleMap />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Foursquare />
       </div>
     );
   }

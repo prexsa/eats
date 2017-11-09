@@ -2,23 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getHotAndNew } from '../actions/index';
 import Slider from 'react-slick';
-/*import { List, ListItem } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
-import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';*/
-import { Button, List, Image } from 'semantic-ui-react';
+import { Button, Grid, List, Image } from 'semantic-ui-react';
+import GoogleMap from '../components/GoogleMap';
+
+// http://jsfiddle.net/paulalexandru/T2F5Z/
 
 class Foursquare extends React.Component {
   componentDidMount() {
     this.props.getHotAndNew();
   }
 
-  renderListItems(data) {
-    console.log("data: ", data)
-    if(Object.getOwnPropertyNames(data).length == 0) return;
-    const businesses = data.yelpHotAndNew.businesses;
+  renderListItems(businesses) {
+    //console.log("data: ", data)
+    //if(Object.getOwnPropertyNames(data).length == 0) return;
+    //const businesses = data.yelpHotAndNew.businesses;
     // console.log('businessess: ', businesses)
     return businesses.map(business => {
       const id = business.id;
@@ -49,16 +46,30 @@ class Foursquare extends React.Component {
   render() {
     const{ yelp } = this.props;
 
-    //console.log('yelp :', yelp)
-    if(!yelp) {
+    if(Object.getOwnPropertyNames(yelp).length == 0) {
       return <div>Loading Search Results</div>
     }
+    const businesses = yelp.yelpHotAndNew.businesses;
+    const region = yelp.yelpHotAndNew.region;
+    const geocenter = {
+     lat: region.center.latitude,
+     lng: region.center.longitude
+    };
+
     return (
       <div>
-        <h3></h3>  
-        <List divided relaxed className="list-container">
-          { this.renderListItems(yelp) }
-        </List>
+      <Grid>
+          <Grid.Row>
+            <Grid.Column width={8}>
+              <List divided relaxed className="list-container">
+                { this.renderListItems(businesses) }
+              </List>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <GoogleMap list={businesses} geocenter={geocenter} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     )
   } 

@@ -149,8 +149,11 @@ a {
 }
 
 .map-container {
-  width: 50%;
-  float: right;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .area-container {

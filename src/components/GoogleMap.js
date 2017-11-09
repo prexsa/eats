@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-
-const mapStyle = {
-  width: 800,
-  height: 680
-};
-
 //const google = window.google;
 
 class GoogleMaps extends Component {
@@ -15,15 +9,17 @@ class GoogleMaps extends Component {
       list: []
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.list === undefined) {
+
+  componentDidMount() {
+    //console.log('nextProps: ', this.props)
+    if(this.props.list === undefined) {
       return false;
     }
-    this.setState({list: nextProps.list});
-    const businessList = nextProps.list;
+    this.setState({list: this.props.list});
+    const businessList = this.props.list;
 
-    const lat = nextProps.geocenter.lat;
-    const lng = nextProps.geocenter.lng;
+    const lat = this.props.geocenter.lat;
+    const lng = this.props.geocenter.lng;
     
     const coordinates = {lat: lat, lng: lng };
 
@@ -54,10 +50,9 @@ class GoogleMaps extends Component {
   render() {
     return(
       <div className="google-maps">
-        <div className="map-container" ref="map" style={mapStyle}>
+        <div className="map-container" ref="map">
           Maps
         </div>
-        <div className="clear"></div>
       </div>
     )
   }
