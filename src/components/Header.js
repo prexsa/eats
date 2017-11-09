@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router';
 
 class Header extends Component {
@@ -15,9 +16,9 @@ class Header extends Component {
 
   render() {
     return (
-      <AppBar>
-        { this.renderLinks() }
-      </AppBar>
+      <Menu>
+        <Menu.Item><h1>Eats</h1></Menu.Item>
+      </Menu>
     )
   }
 }

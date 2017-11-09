@@ -89,7 +89,7 @@ a {
 }
 
 .header-container {
-  width: 900px;
+  /*width: 900px;*/
   margin: 0px auto;
   font-size: 13px;
   text-align: center;
@@ -97,6 +97,10 @@ a {
 
 .header-container h1 {
   font-size: 3.5em;
+}
+
+.list-container {
+  width: 425px;
 }
 
 .phrase {

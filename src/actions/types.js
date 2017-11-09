@@ -9,3 +9,5 @@ export const FETCH_SCRAPE = 'fetch_scrape';
 export const FETCH_GEOLOCATION_AREA = 'fetch_geolocation_area';
 export const GET_LOCATION = 'get_location';
 export const GET_FOURSQUARES = 'get_foursquares';
+export const GET_TRENDING = 'get_trending';
+export const GET_HOT_AND_NEW = 'get_hot_and_new';

@@ -1,10 +1,11 @@
-import { GET_FOURSQUARES } from '../actions/types.js';
+import { GET_FOURSQUARES, GET_TRENDING } from '../actions/types.js';
 
-export default function(state = [], action) {
-  console.log('action: ', action.payload)
+export default function(state = {}, action) {
   switch(action.type) {
     case GET_FOURSQUARES:
-      return [ action.payload, ...state ];
+      return { foursquare: action.payload };
+    case GET_TRENDING:
+      return { trending: action.payload };
   }
   return state;
 }

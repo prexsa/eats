@@ -11,7 +11,9 @@ import {
   FETCH_SCRAPE,
   FETCH_GEOLOCATION_AREA,
   GET_LOCATION,
-  GET_FOURSQUARES
+  GET_FOURSQUARES,
+  GET_TRENDING,
+  GET_HOT_AND_NEW
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -57,9 +59,32 @@ export function getFoursquares() {
   return function(dispatch) {
     axios.get(`${ROOT_URL}/foursquare`)
       .then(resp => {
-        console.log('resp: ', resp.data)
         dispatch({
           type: GET_FOURSQUARES,
+          payload: resp.data
+        })
+      })
+  }
+}
+
+export function getTrending() {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/trending`)
+      .then(resp => {
+        dispatch({
+          type: GET_TRENDING,
+          payload: resp.data
+        })
+      })
+  }
+}
+
+export function getHotAndNew() {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/new`)
+      .then(resp => {
+        dispatch({
+          type: GET_HOT_AND_NEW,
           payload: resp.data
         })
       })

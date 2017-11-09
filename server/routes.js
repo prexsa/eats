@@ -6,7 +6,6 @@ const { foursquare, yelpv3 } = require('../config.js');
 const axios = require('axios');
 const querystring = require('querystring');
 
-
 /*const requireLogin = passport.authenticate('local', { session: false });*/
 
 const yelp = new Yelp({
@@ -19,17 +18,17 @@ module.exports = (app) => {
   app.post('/register', Authentication.register);*/
 
   app.get('/foursquare', (req, res) => {
-    let hostStr = `https://api.foursquare.com/v2/venues/explore?`;
-    let params = querystring.stringify({
+    const exploreHostStr = `https://api.foursquare.com/v2/venues/explore?`;
+    const params = querystring.stringify({
       v: 20170101,
       client_id: foursquare.clientId,
       client_secret: foursquare.clientSecret,
-      ll: '40.7243,-74.0018',
-      query: 'coffee',
-      limit: 1
+      ll: '33.7701,-118.1937',
+      section: 'restaurant',
+      limit: 50
     });
     
-    let queryStr = hostStr.concat(params);
+    const queryStr = exploreHostStr.concat(params);
     axios.get(queryStr)
       .then(response => {
         res.send(response.data);
@@ -37,6 +36,40 @@ module.exports = (app) => {
       .catch(err => {
         console.error(err);
       })
+  })
+
+  app.get('/trending', (req, res) => {
+    const trendingHostStr = `https://api.foursquare.com/v2/venues/trending?`;
+    const params = querystring.stringify({
+      v: 20170101,
+      client_id: foursquare.clientId,
+      client_secret: foursquare.clientSecret,
+      ll: '33.7701,-118.1937',
+      limit: 50
+    });
+
+    const queryStr = trendingHostStr.concat(params);
+    axios.get(queryStr)
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  })
+
+  app.get('/new', (req, res) => {
+    const latitude = 33.7701;
+    const longitude = -118.1937;
+
+    yelp.searchBusiness({ term: "food, restaurants", latitude, longitude, radius: 8046, limit: 30 })
+      .then(function(data) {
+        //console.log('DATA: ', data)
+        res.send(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   })
 
   app.post('/api/geolocation', (req, res) => {

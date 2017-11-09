@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import reducers from './reducers';
 import App from './components/App';
 import Login from './containers/auth/Login';
@@ -29,7 +29,6 @@ if(token) {
 
 ReactDOM.render(
   <Provider store={store}>
-  <MuiThemeProvider>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Main} />
@@ -40,6 +39,5 @@ ReactDOM.render(
         <Route path="/restaurantdetails" component={RestaurantDetails} />
       </Route>
     </Router>
-  </MuiThemeProvider>
   </Provider>
   , document.querySelector('.container'));
