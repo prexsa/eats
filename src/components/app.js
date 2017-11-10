@@ -1,32 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { bindActionCreators } from 'redux';
-import { getlocation, fetchGeolocationArea, getFoursquares, getTrending } from '../actions/index';
+import { getLocation, fetchGeolocationArea, getFoursquares, getTrending } from '../actions/index';
 //import { googleapi } from '../../config';
 import { Link } from 'react-router';
 import Header from './Header';
 import SearchBar from '../containers/SearchBar';
-import Foursquare from '../containers/foursquare';
-import HotAndNew from '../containers/hotAndNew';
+import BusinessList from '../containers/businessList.yelp';
+import BusinessDetails from '../containers/businessDetails.yelp';
 
 class App extends Component {
+  state = {
+    geolocation: {
+      lat: null,
+      lng: null
+    }
+  }
+  componentDidMount() {
+    //console.log('State: ', this.state)
+    //this.props.getLocation();
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <Foursquare />
+        <BusinessDetails />
+        <BusinessList />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
+const mapStateToProps = ({ auth, location }) => {
+  return { auth, location };
 }
 
 export default connect(
   mapStateToProps, 
-  { getlocation, fetchGeolocationArea, getFoursquares, getTrending })
+  { getLocation, fetchGeolocationArea, getFoursquares, getTrending })
   (App);
 /*
 <div>

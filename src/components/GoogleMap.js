@@ -24,7 +24,7 @@ class GoogleMaps extends Component {
     const coordinates = {lat: lat, lng: lng };
 
     const map = new google.maps.Map(this.refs.map , {
-      zoom: 13, 
+      zoom: 15, 
       center: coordinates
     })
 

@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getHotAndNew } from '../actions/index';
+import { yelpAreaSearch } from '../actions/index';
 import Slider from 'react-slick';
 import { Button, Grid, List, Image } from 'semantic-ui-react';
 import GoogleMap from '../components/GoogleMap';
 
 // http://jsfiddle.net/paulalexandru/T2F5Z/
 
-class Foursquare extends React.Component {
+class BusinessList extends React.Component {
   componentDidMount() {
-    this.props.getHotAndNew();
+    const geoCoords = {
+      lat: 33.7701,
+      lng: -118.1937
+    }
+    this.props.yelpAreaSearch(geoCoords);
   }
 
   renderListItems(businesses) {
@@ -45,12 +49,12 @@ class Foursquare extends React.Component {
 
   render() {
     const{ yelp } = this.props;
-
+    // console.log("yelp: ", yelp)
     if(Object.getOwnPropertyNames(yelp).length == 0) {
       return <div>Loading Search Results</div>
     }
-    const businesses = yelp.yelpHotAndNew.businesses;
-    const region = yelp.yelpHotAndNew.region;
+    const businesses = yelp.areaSearchYelp.businesses;
+    const region = yelp.areaSearchYelp.region;
     const geocenter = {
      lat: region.center.latitude,
      lng: region.center.longitude
@@ -60,12 +64,12 @@ class Foursquare extends React.Component {
       <div>
       <Grid>
           <Grid.Row>
-            <Grid.Column width={8}>
+            <Grid.Column width={6}>
               <List divided relaxed className="list-container">
                 { this.renderListItems(businesses) }
               </List>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column width={10}>
               <GoogleMap list={businesses} geocenter={geocenter} />
             </Grid.Column>
           </Grid.Row>
@@ -79,4 +83,4 @@ const mapStateToProps = ({ yelp }) => {
   return { yelp }
 }
 
-export default connect(mapStateToProps, { getHotAndNew })(Foursquare);
+export default connect(mapStateToProps, { yelpAreaSearch })(BusinessList);

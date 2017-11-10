@@ -17,6 +17,27 @@ module.exports = (app) => {
   /*app.post('/login', requireLogin, Authentication.login);
   app.post('/register', Authentication.register);*/
 
+/********************************************************************
+  Yelp API Calls
+********************************************************************/
+
+  app.post('/yelp/area', (req, res) => {
+    const latitude = req.body.geoCoords.lat;
+    const longitude = req.body.geoCoords.lng;
+    
+    yelp.searchBusiness({ term: "food, restaurants", latitude, longitude, radius: 8046, limit: 30 })
+      .then(function (data) {
+        res.send(data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  });
+
+/********************************************************************
+  Foursquare API Calls
+********************************************************************/
+
   app.get('/foursquare', (req, res) => {
     const exploreHostStr = `https://api.foursquare.com/v2/venues/explore?`;
     const params = querystring.stringify({
@@ -83,17 +104,6 @@ module.exports = (app) => {
       .catch(err => {
         console.error(err);
       });
-  });
-
-  app.post('/api/search', (req, res) => {
-    const area = req.body.area;
-    yelp.searchBusiness({ term: "food, restaurants", location: area })
-      .then(function (data) {
-        res.send(data);
-    })
-    .catch(err => {
-      console.error(err);
-    });
   });
 
   app.post('/api/hours', (req, res) => {

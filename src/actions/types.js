@@ -6,8 +6,10 @@ export const FETCH_RESTAURANT = 'fetch_restaurant';
 export const FETCH_BUSINESS_HOURS = 'fetch_business_hours';
 export const FETCH_BUSINESS_REVIEWS = 'fetch_business_reviews';
 export const FETCH_SCRAPE = 'fetch_scrape';
-export const FETCH_GEOLOCATION_AREA = 'fetch_geolocation_area';
-export const GET_LOCATION = 'get_location';
 export const GET_FOURSQUARES = 'get_foursquares';
 export const GET_TRENDING = 'get_trending';
 export const GET_HOT_AND_NEW = 'get_hot_and_new';
+
+
+export const GET_LOCATION = 'get_location';
+export const YELP_AREA_SEARCH = 'yelp_area_search';

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import authReducer from './auth_reducer';
 import geolocationAreaReducer from './geolocationarea_reducer';
-import getLocationReducer from './getlocation_reducer';
+import location from './getLocation';
 import reviewsReducer from './reviews_reducer';
 import hoursReducer from './hours_reducer';
 import yelpLinkReducer from './yelplink_reducer';
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   form,
   auth: authReducer,
   geolocation: geolocationAreaReducer,
-  location: getLocationReducer,
+  location,
   restaurants: restaurantReducer,
   reviews: reviewsReducer,
   hours: hoursReducer,
