@@ -16,7 +16,7 @@ class Header extends Component {
 
   render() {
     return (
-      <Menu>
+      <Menu className="bgcolor7daf74">
         <Menu.Item><h1>Eats</h1></Menu.Item>
       </Menu>
     )
