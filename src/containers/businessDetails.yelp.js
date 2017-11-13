@@ -1,18 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Grid, List, Image, Tab } from 'semantic-ui-react';
-
-const src = '../../public/novitec.jpg';
+import TabsPhoto from './Tabs.Photo';
 
 class BusinessDetails extends React.Component {  
   render() {
     const testing = {test: "Testing string"};
     const testing2 = "Another testing String";
-const panes = [
-  { menuItem: 'Tab 1', render: () => <Tab.Pane {...testing} attached={false}>Tab 1 Content</Tab.Pane> },
-  { menuItem: 'Tab 2', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
-  { menuItem: 'Tab 3', render: () => <Tab.Pane tu={testing2} attached={false}>Tab 3 Content{this.props.tu}</Tab.Pane> },
-]
+    const panes = [
+      { menuItem: 'Tab 1', render: (test) => <Tab.Pane attached={false}><TabsPhoto /></Tab.Pane> },
+      { menuItem: 'Tab 2', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
+      { menuItem: 'Tab 3', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
+    ]
     return (
       <div className="details-container">
         <List>
@@ -24,20 +23,7 @@ const panes = [
             </List.Content>
           </List.Item>
         </List>
-        <Tab menu={{ pointing: true }} panes={panes} />
-        <div>
-          <h3>Photos</h3>
-          <Image.Group size='medium'>
-            <Image src={src} />
-            <Image src={src} />
-            <Image src={src} />
-            <Image src={src} />
-            <Image src={src} />
-            <Image src={src} />
-            <Image src={src} />
-            <Image src={src} />
-          </Image.Group>
-        </div>
+        <Tab menu={{ pointing: true }} panes={panes} testing={testing} />
         <p>Address of Restaurant</p>
         --map, --menu, --photos, --reviews, --foursquare/yelp rating
       </div>
