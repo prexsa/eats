@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { yelpAreaSearch } from '../actions/index';
-import Slider from 'react-slick';
+import { getFoursquares } from '../actions/index';
 import { Button, Grid, List, Image } from 'semantic-ui-react';
 import GoogleMap from '../components/GoogleMap';
-
-// http://jsfiddle.net/paulalexandru/T2F5Z/
 
 class BusinessList extends React.Component {
   componentDidMount() {
@@ -13,7 +10,7 @@ class BusinessList extends React.Component {
       lat: 33.7701,
       lng: -118.1937
     }
-    this.props.yelpAreaSearch(geoCoords);
+    this.props.getFoursquares(geoCoords);
   }
 
   renderListItems(businesses) {
@@ -21,25 +18,29 @@ class BusinessList extends React.Component {
     //const businesses = data.yelpHotAndNew.businesses;
     //console.log('businessess: ', businesses)
     return businesses.map(business => {
-      const id = business.id;
-      const name = business.name;
-      const image = business.image_url;
-      const address = business.location.display_address[0];
-      const phone = business.display_phone;
-      const price = business.price;
-      let categories = [];
-      business.categories.map(i => {
-        categories.push(i.title);
-      });
-      const categoryStr = categories.join(', ')
+      console.log('business: ', business)
+      const venue = business.venue;
+      const id = venue.id;
+      const name = venue.name;
+      const address = venue.location.address;
+      const phone = venue.contact.formattedPhone;
+      const checkInCount = venue.stats.checkInCount;
+      let priceCurrency,
+        priceMessage;
+
+      if(!venue.price) {
+        priceCurrency = 'n/a';
+        priceMessage = 'n/a';
+      } else {
+        priceCurrency = venue.price.currency;
+        priceMessage = venue.price.message
+      }
 
       return (
         <List.Item key={id}>
-          <Image avatar src={image} />
           <List.Content>
-            <List.Header as='a'>{name}, {price}</List.Header>
+            <List.Header as='a'>{name}, {priceCurrency} - {priceMessage}</List.Header>
             <List.Description>{phone}, {address}</List.Description>
-            <List.Description>{categoryStr}</List.Description>
           </List.Content>
         </List.Item>
       )
@@ -47,16 +48,18 @@ class BusinessList extends React.Component {
   }
 
   render() {
-    const{ yelp } = this.props;
-    // console.log("yelp: ", yelp)
-    if(Object.getOwnPropertyNames(yelp).length == 0) {
+    const{ foursquare } = this.props;
+    console.log("foursquare: ", foursquare)
+    if(Object.getOwnPropertyNames(foursquare).length == 0) {
       return <div>Loading Search Results</div>
     }
-    const businesses = yelp.areaSearchYelp.businesses;
-    const region = yelp.areaSearchYelp.region;
+    const header = foursquare.foursquare.response.headerFullLocation;
+    let groups = foursquare.foursquare.response.groups;
+    const businesses = groups[0].items;
+    const region = foursquare.foursquare.response.suggestedBounds;
     const geocenter = {
-     lat: region.center.latitude,
-     lng: region.center.longitude
+     lat: region.ne.lat,
+     lng: region.ne.lng
     };
 
     return (
@@ -64,6 +67,7 @@ class BusinessList extends React.Component {
       <Grid>
           <Grid.Row>
             <Grid.Column width={6}>
+              <h4>{header}</h4>
               <List divided relaxed className="list-container">
                 { this.renderListItems(businesses) }
               </List>
@@ -78,8 +82,8 @@ class BusinessList extends React.Component {
   } 
 }
 
-const mapStateToProps = ({ yelp }) => {
-  return { yelp }
+const mapStateToProps = ({ foursquare }) => {
+  return { foursquare }
 }
 
-export default connect(mapStateToProps, { yelpAreaSearch })(BusinessList);
+export default connect(mapStateToProps, { getFoursquares })(BusinessList);

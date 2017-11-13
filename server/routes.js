@@ -34,6 +34,17 @@ module.exports = (app) => {
     });
   });
 
+  app.post('/yelp/business-details', (req, res) => {
+    const id = req.body.id;
+    yelp.getBusinessById(id)
+      .then(function (data) {
+        res.send(data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  });
+
 /********************************************************************
   Foursquare API Calls
 ********************************************************************/
@@ -45,7 +56,7 @@ module.exports = (app) => {
       client_id: foursquare.clientId,
       client_secret: foursquare.clientSecret,
       ll: '33.7701,-118.1937',
-      section: 'restaurant',
+      section: 'food',
       limit: 50
     });
     
@@ -106,7 +117,7 @@ module.exports = (app) => {
       });
   });
 
-  app.post('/api/hours', (req, res) => {
+/*  app.post('/api/hours', (req, res) => {
     const id = req.body.id;
     yelp.getBusinessById(id)
       .then(function (data) {
@@ -115,7 +126,7 @@ module.exports = (app) => {
       .catch(err => {
         console.error(err);
       });
-    });
+    });*/
 
   app.post('/api/reviews', (req, res) => {
     const id = req.body.id;

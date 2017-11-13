@@ -6,8 +6,10 @@ import { getLocation, fetchGeolocationArea, getFoursquares, getTrending } from '
 import { Link } from 'react-router';
 import Header from './Header';
 import SearchBar from '../containers/SearchBar';
-import BusinessList from '../containers/businessList.yelp';
-import BusinessDetails from '../containers/businessDetails.yelp';
+// import BusinessList from '../containers/businessList.yelp';
+import BusinessList from '../containers/businessList.foursquare';
+//import BusinessDetails from '../containers/businessDetails.yelp';
+import Testing from '../containers/Testing';
 
 class App extends Component {
   state = {
@@ -19,13 +21,13 @@ class App extends Component {
   componentDidMount() {
     //console.log('State: ', this.state)
     //this.props.getLocation();
+    this.props.getFoursquares();
   }
 
   render() {
     return (
       <div>
         <Header />
-        <BusinessDetails />
         <BusinessList />
       </div>
     );
@@ -40,17 +42,3 @@ export default connect(
   mapStateToProps, 
   { getLocation, fetchGeolocationArea, getFoursquares, getTrending })
   (App);
-/*
-<div>
-  <Header />
-  <div className="header-container">
-    <Link to="/"><h1>Eats</h1></Link>
-  </div>
-  <p className="phrase">
-    Can't Decide, Enter A Seach Location...
-  </p>
-  <SearchBar />
-  <Foursquare />
-  {this.props.children}
-</div>
-*/

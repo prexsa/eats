@@ -1,17 +1,17 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {
+  YELP_BUSINESS_DETAILS,
+  YELP_AREA_SEARCH,
+  GET_FOURSQUARES,
   AUTH_USER, 
   UNAUTH_USER, 
   AUTH_ERROR, 
   FETCH_MESSAGE, 
   FETCH_RESTAURANT,
-  FETCH_BUSINESS_HOURS,
   FETCH_BUSINESS_REVIEWS,
   FETCH_SCRAPE,
-  YELP_AREA_SEARCH,
   GET_LOCATION,
-  GET_FOURSQUARES,
   GET_TRENDING,
   GET_HOT_AND_NEW
 } from './types';
@@ -52,6 +52,21 @@ export function yelpAreaSearch(geoCoords) {
       .then(resp => {
         dispatch({
           type: YELP_AREA_SEARCH,
+          payload: resp.data
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+}
+
+export function yelpBusinessDetails(id) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/yelp/business-details`, {id})
+      .then(resp => {
+        dispatch({
+          type: YELP_BUSINESS_DETAILS,
           payload: resp.data
         })
       })
@@ -114,21 +129,6 @@ export function fetchRestaurant(area) {
           payload: resp.data
         })
         browserHistory.push('/restaurantdetails');
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-}
-
-export function fetchBusinessHours(id) {
-  return function(dispatch) {
-    axios.post(`${ROOT_URL}/api/hours`, {id})
-      .then(resp => {
-        dispatch({
-          type: FETCH_BUSINESS_HOURS,
-          payload: resp.data
-        })
       })
       .catch(err => {
         console.log(err);

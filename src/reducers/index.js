@@ -7,8 +7,10 @@ import reviewsReducer from './reviews_reducer';
 import hoursReducer from './hours_reducer';
 import yelpLinkReducer from './yelplink_reducer';
 import restaurantReducer from './restaurant_reducer';
+
 import foursquare from './foursquare';
 import yelp from './yelp';
+import businessDetails from './businessDetailsReducer.yelp';
 
 const rootReducer = combineReducers({
   form,
@@ -19,6 +21,7 @@ const rootReducer = combineReducers({
   reviews: reviewsReducer,
   hours: hoursReducer,
   yelp1: yelpLinkReducer,
+  businessDetails,
   foursquare,
   yelp
 });

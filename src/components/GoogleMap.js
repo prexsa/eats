@@ -11,7 +11,6 @@ class GoogleMaps extends Component {
   }
 
   componentDidMount() {
-    //console.log('nextProps: ', this.props)
     if(this.props.list === undefined) {
       return false;
     }
@@ -32,9 +31,12 @@ class GoogleMaps extends Component {
 
     var marker, i;
 
-    for (i = 0; i < businessList.length; i++) {  
+    for (i = 0; i < businessList.length; i++) {
+      const location = businessList[i].venue.location;
+      const lat = location.lat;
+      const lng = location.lng;  
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(businessList[i].coordinates.latitude, businessList[i].coordinates.longitude),
+        position: new google.maps.LatLng(lat, lng),
         map: map
       });
 
