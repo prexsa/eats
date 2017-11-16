@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { bindActionCreators } from 'redux';
-import { getLocation, fetchGeolocationArea, getFoursquares, getTrending } from '../actions/index';
+import { getLocation, fetchGeolocationArea, getFoursquares, yelpAreaSearch } from '../actions/index';
 //import { googleapi } from '../../config';
 import { Link } from 'react-router';
 import Header from './Header';
@@ -21,7 +21,12 @@ class App extends Component {
   componentDidMount() {
     //console.log('State: ', this.state)
     //this.props.getLocation();
-    this.props.getFoursquares();
+    const geoCoords = {
+      lat: 33.7701,
+      lng: -118.1937
+    }
+    //this.props.yelpAreaSearch(geoCoords);
+    //this.props.getFoursquares();
   }
 
   render() {
@@ -40,5 +45,5 @@ const mapStateToProps = ({ auth, location }) => {
 
 export default connect(
   mapStateToProps, 
-  { getLocation, fetchGeolocationArea, getFoursquares, getTrending })
+  { getLocation, fetchGeolocationArea, getFoursquares, yelpAreaSearch })
   (App);

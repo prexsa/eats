@@ -25,7 +25,7 @@ module.exports = (app) => {
     const latitude = req.body.geoCoords.lat;
     const longitude = req.body.geoCoords.lng;
     
-    yelp.searchBusiness({ term: "food, restaurants", latitude, longitude, radius: 8046, limit: 30 })
+    yelp.searchBusiness({ term: "food, restaurants", latitude, longitude, radius: 8046, limit: 2 })
       .then(function (data) {
         res.send(data);
     })
@@ -57,7 +57,7 @@ module.exports = (app) => {
       client_secret: foursquare.clientSecret,
       ll: '33.7701,-118.1937',
       section: 'food',
-      limit: 50
+      limit: 2
     });
     
     const queryStr = exploreHostStr.concat(params);

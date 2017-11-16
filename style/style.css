@@ -7,7 +7,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   /*font-family: "Lekton","HelveticaNeue","Helvetica Neue",sans-serif;*/
-  letter-spacing: 0.085em;
+  letter-spacing: 0.068em;
   background-color: #fff;
 }
 
@@ -124,8 +124,31 @@ a {
   left: 0;
 }
 
+/********************************************************************
+  List
+********************************************************************/
+
 .list-container {
   width: 425px;
+}
+
+.location-header {
+  color: #af747d;
+}
+
+.content {
+  line-height: 1.35em !important;
+  font-size: 0.9em;
+}
+
+.content .header {
+  color: #629858 !important;
+  font-size: 1.38em;
+  line-height: 1.35em;
+}
+
+.content .description {
+  color: #686ca8 !important;
 }
 
 /********************************************************************
