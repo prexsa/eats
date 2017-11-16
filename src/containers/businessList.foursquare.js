@@ -1,18 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getFoursquares } from '../actions/index';
+import { foursquareAreaSearch } from '../actions/index';
 import { Button, Grid, List, Image, Popup } from 'semantic-ui-react';
 import GoogleMap from '../components/GoogleMap';
 
 class BusinessList extends React.Component {
-  componentDidMount() {
-    const geoCoords = {
-      lat: 33.7701,
-      lng: -118.1937
-    }
-    this.props.getFoursquares(geoCoords);
-  }
-
   renderListItems(businesses) {
     //if(Object.getOwnPropertyNames(data).length == 0) return;
     //const businesses = data.yelpHotAndNew.businesses;
@@ -62,8 +54,7 @@ class BusinessList extends React.Component {
   }
 
   render() {
-    const{ foursquare, location } = this.props;
-    console.log("location: ", location)
+    const{ foursquare } = this.props;
     if(Object.getOwnPropertyNames(foursquare).length == 0) {
       return <div>Loading Search Results</div>
     }
@@ -96,8 +87,8 @@ class BusinessList extends React.Component {
   } 
 }
 
-const mapStateToProps = ({ foursquare, location }) => {
-  return { foursquare, location }
+const mapStateToProps = ({ foursquare }) => {
+  return { foursquare }
 }
 
-export default connect(mapStateToProps, { getFoursquares })(BusinessList);
+export default connect(mapStateToProps, { foursquareAreaSearch })(BusinessList);

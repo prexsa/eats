@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { bindActionCreators } from 'redux';
-import { getLocation, fetchGeolocationArea, getFoursquares, yelpAreaSearch } from '../actions/index';
+import { getLocation } from '../actions/index';
 //import { googleapi } from '../../config';
 import { Link } from 'react-router';
 import Header from './Header';
@@ -12,21 +12,9 @@ import BusinessList from '../containers/businessList.foursquare';
 import Testing from '../containers/Testing';
 
 class App extends Component {
-  state = {
-    geolocation: {
-      lat: null,
-      lng: null
-    }
-  }
   componentDidMount() {
     //console.log('State: ', this.state)
-    //this.props.getLocation();
-    const geoCoords = {
-      lat: 33.7701,
-      lng: -118.1937
-    }
-    //this.props.yelpAreaSearch(geoCoords);
-    //this.props.getFoursquares();
+    this.props.getLocation();
   }
 
   render() {
@@ -45,5 +33,5 @@ const mapStateToProps = ({ auth, location }) => {
 
 export default connect(
   mapStateToProps, 
-  { getLocation, fetchGeolocationArea, getFoursquares, yelpAreaSearch })
+  { getLocation })
   (App);

@@ -49,15 +49,17 @@ module.exports = (app) => {
   Foursquare API Calls
 ********************************************************************/
 
-  app.get('/foursquare', (req, res) => {
+  app.post('/foursquare/search', (req, res) => {
+    const lat = req.body.coords.lat;
+    const lng = req.body.coords.lng;
     const exploreHostStr = `https://api.foursquare.com/v2/venues/explore?`;
     const params = querystring.stringify({
       v: 20170101,
       client_id: foursquare.clientId,
       client_secret: foursquare.clientSecret,
-      ll: '33.7701,-118.1937',
+      ll: `${lat},${lng}`,
       section: 'food',
-      limit: 2
+      limit: 15
     });
     
     const queryStr = exploreHostStr.concat(params);

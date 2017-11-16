@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import {
   YELP_BUSINESS_DETAILS,
   YELP_AREA_SEARCH,
-  GET_FOURSQUARES,
+  FOURSQUARES_AREA_SEARCH,
   AUTH_USER, 
   UNAUTH_USER, 
   AUTH_ERROR, 
@@ -94,12 +94,12 @@ export function yelpBusinessDetails(id) {
   Foursquares API Endpoints
 ********************************************************************/
 
-export function getFoursquares() {
+export function foursquareAreaSearch(coords) {
   return function(dispatch) {
-    axios.get(`${ROOT_URL}/foursquare`)
+    axios.post(`${ROOT_URL}/foursquare/search`, { coords })
       .then(resp => {
         dispatch({
-          type: GET_FOURSQUARES,
+          type: FOURSQUARES_AREA_SEARCH,
           payload: resp.data
         })
       })

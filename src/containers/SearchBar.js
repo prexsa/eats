@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getLocation } from '../actions/index';
+import { foursquareAreaSearch } from '../actions/index';
 import { Input } from 'semantic-ui-react';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      lat: null,
+      lng: null
+    }
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
   };
 
@@ -20,19 +24,31 @@ class SearchBar extends Component {
 
   onPlaceChanged() {
     this.place = this.autocomplete.getPlace();
-// console.log('place: ', this.place)
     if (this.place.geometry) {
       const lat = this.place.geometry.location.lat();
       const lng = this.place.geometry.location.lng();
-      const coords = {
+      const geoCoords = {
         lat,lng
       }
-      // dispatch action for location
-      this.props.getLocation(coords);
+      this.setState({ lat, lng });
     } else {
       document.getElementById('autocomplete').placeholder = 'Enter a city';
     }
   };
+
+  componentWillReceiveProps(nextProps, nextState) {
+    const lat = nextProps.location.coords.coords.latitude;
+    const lng = nextProps.location.coords.coords.longitude;
+    this.setState({ lat, lng });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const coords = {
+      lat: this.state.lat,
+      lng: this.state.lng
+    }
+    this.props.foursquareAreaSearch(coords);
+  }
 
   render() {
     return (
@@ -41,4 +57,8 @@ class SearchBar extends Component {
   }
 }
 
-export default connect(null, { getLocation })(SearchBar);
+const mapStateToProps = ({ location }) => {
+  return { location }
+}
+
+export default connect(mapStateToProps, { foursquareAreaSearch })(SearchBar);

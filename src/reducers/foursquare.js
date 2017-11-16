@@ -1,8 +1,8 @@
-import { GET_FOURSQUARES, GET_TRENDING } from '../actions/types.js';
+import { FOURSQUARES_AREA_SEARCH, GET_TRENDING } from '../actions/types.js';
 
 export default function(state = {}, action) {
   switch(action.type) {
-    case GET_FOURSQUARES:
+    case FOURSQUARES_AREA_SEARCH:
       return { ...action.payload };
     case GET_TRENDING:
       return { trending: action.payload };

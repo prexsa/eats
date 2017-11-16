@@ -80,6 +80,22 @@ a {
   zoom: 1;
 }
 
+input::-webkit-input-placeholder {
+  color: #874e56 !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+  color: #874e56 !important;  
+}1
+
+input::-moz-placeholder {  /* Firefox 19+ */
+  color: #874e56 !important;  
+}
+
+input:-ms-input-placeholder {  
+  color: #874e56 !important;  
+}
+
 /********************************************************************
   App
 ********************************************************************/
@@ -113,6 +129,10 @@ a {
   color: #7daf74 !important;
 }
 
+#autocomplete {
+  color: #884e57;
+}
+
 /********************************************************************
   Map
 ********************************************************************/
@@ -133,7 +153,7 @@ a {
 }
 
 .location-header {
-  color: #af747d;
+  color: #884e57;
 }
 
 .content {
