@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <Menu className="bgcolor7daf74">
         <Menu.Item><h1>Eats</h1></Menu.Item>
-        <Menu.Item>
+        <Menu.Item className="searchbar-menu-item">
           <SearchBar />
         </Menu.Item>
       </Menu>
