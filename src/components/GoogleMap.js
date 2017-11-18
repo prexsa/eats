@@ -81,10 +81,8 @@ class GoogleMaps extends Component {
 
   render() {
     return(
-      <div className="google-maps">
-        <div className="map-container" ref="map">
-          Maps
-        </div>
+      <div className="map-container" ref="map">
+        Maps
       </div>
     )
   }

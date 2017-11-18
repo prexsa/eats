@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Menu, Input } from 'semantic-ui-react';
+import { Menu, Input, Button, Icon } from 'semantic-ui-react';
 import SearchBar from '../containers/SearchBar';
 
 class Header extends Component {
@@ -10,6 +10,11 @@ class Header extends Component {
         <Menu.Item><h1>Eats</h1></Menu.Item>
         <Menu.Item className="searchbar-menu-item">
           <SearchBar />
+        </Menu.Item>
+        <Menu.Item>
+          <Button onClick={() => console.log("My Location Button")}>
+            <Icon name='map pin' size='large' />My Location
+          </Button>
         </Menu.Item>
       </Menu>
     )

@@ -12,4 +12,5 @@ export const GET_HOT_AND_NEW = 'get_hot_and_new';
 export const GET_LOCATION = 'get_location';
 export const YELP_AREA_SEARCH = 'yelp_area_search';
 export const YELP_BUSINESS_DETAILS = 'yelp_business_details';
+export const YELP_TRANSACTION_TYPE = 'yelp_transaction_type';
 export const FOURSQUARES_AREA_SEARCH = 'foursquares_area_search';

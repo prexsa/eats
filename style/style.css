@@ -139,6 +139,11 @@ input:-ms-input-placeholder {
 /********************************************************************
   Map
 ********************************************************************/
+
+.google-maps {
+  max-width: 100%;
+}
+
 .map-container {
   height: 100%;
   width: 100%;
@@ -152,7 +157,9 @@ input:-ms-input-placeholder {
 ********************************************************************/
 
 .list-container {
-  width: 425px;
+  width: 525px !important;
+  position: fixed;
+  padding-left: 30px !important;
 }
 
 .location-header {
@@ -172,6 +179,10 @@ input:-ms-input-placeholder {
 
 .content .description {
   color: #686ca8 !important;
+}
+
+.transactions {
+  width: 90px;
 }
 
 /********************************************************************

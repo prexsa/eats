@@ -71,13 +71,13 @@ class BusinessList extends React.Component {
       <div>
         <Grid>
           <Grid.Row>
-            <Grid.Column width={6}>
+            <Grid.Column width={4} className="list-container">
               <h4><span className="location-header">{header}</span></h4>
-              <List divided relaxed className="list-container">
+              <List divided relaxed>
                 { this.renderListItems(businesses) }
               </List>
             </Grid.Column>
-            <Grid.Column width={10}>
+            <Grid.Column width={12}>
               <GoogleMap list={businesses} geocenter={geocenter} />
             </Grid.Column>
           </Grid.Row>

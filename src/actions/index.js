@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import {
   YELP_BUSINESS_DETAILS,
   YELP_AREA_SEARCH,
+  YELP_TRANSACTION_TYPE,
   FOURSQUARES_AREA_SEARCH,
   AUTH_USER, 
   UNAUTH_USER, 
@@ -67,6 +68,21 @@ export function yelpBusinessDetails(id) {
       .then(resp => {
         dispatch({
           type: YELP_BUSINESS_DETAILS,
+          payload: resp.data
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+}
+
+export function yelpTransactionType() {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/yelp/transaction`)
+      .then(resp => {
+        dispatch({
+          type: YELP_TRANSACTION_TYPE,
           payload: resp.data
         })
       })
