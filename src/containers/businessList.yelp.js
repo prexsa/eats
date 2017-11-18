@@ -48,7 +48,7 @@ class BusinessList extends React.Component {
 
   render() {
     const{ yelp } = this.props;
-    // console.log("yelp: ", yelp)
+    console.log("yelp: ", yelp)
     if(Object.getOwnPropertyNames(yelp).length == 0) {
       return <div>Loading Search Results</div>
     }

@@ -183,6 +183,8 @@ input:-ms-input-placeholder {
 
 .transactions {
   width: 90px;
+  color: #b6818d;
+  font-weight: bold;
 }
 
 /********************************************************************

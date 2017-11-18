@@ -12,6 +12,7 @@ class TransactionList extends React.Component {
       const id = business.id;
       const name = business.name;
       const image = business.image_url;
+      const url = business.url;
       const address = business.location.display_address[0];
       const phone = business.display_phone;
       const price = business.price;
@@ -29,7 +30,7 @@ class TransactionList extends React.Component {
       const categoryStr = categories.join(', ');
 
       return (
-        <List.Item key={id}>
+        <List.Item key={id} href={url} target='_blank'>
           <List.Content floated='right' className='transactions'>
             <List>
               {
@@ -53,11 +54,11 @@ class TransactionList extends React.Component {
 
   render() {
     const { yelp } = this.props;
-    console.log('Yelp: ', yelp)
+    //console.log('Yelp: ', yelp)
     if(Object.getOwnPropertyNames(yelp).length == 0) {
       return <div>Loading Search Results</div>
     }
-    const businesses = yelp.businesses;
+    const businesses = yelp.transactions.businesses;
 
     return (
       <Grid>

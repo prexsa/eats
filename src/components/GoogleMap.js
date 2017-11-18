@@ -29,9 +29,14 @@ class GoogleMaps extends Component {
     var marker, i;
 
     for (i = 0; i < businessList.length; i++) {
+      const location = businessList[i].coordinates;
+      const lat = location.latitude;
+      const lng = location.longitude;
+
+      /* foursqaures
       const location = businessList[i].venue.location;
       const lat = location.lat;
-      const lng = location.lng;  
+      const lng = location.lng;*/  
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
         map: map
@@ -62,7 +67,8 @@ class GoogleMaps extends Component {
     var marker, i;
 
     for (i = 0; i < businessList.length; i++) {
-      const location = businessList[i].venue.location;
+      const location = businessList[i].coordinates;
+      // const location = businessList[i].venue.location;
       const lat = location.lat;
       const lng = location.lng;  
       marker = new google.maps.Marker({

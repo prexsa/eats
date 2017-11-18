@@ -5,7 +5,7 @@ export default function(state = {}, action) {
     case YELP_AREA_SEARCH:
       return { areaSearchYelp : action.payload };
     case YELP_TRANSACTION_TYPE:
-      return { ...action.payload };
+      return { transactions: action.payload };
   }
   return state;
 }
