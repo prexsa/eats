@@ -8,13 +8,7 @@ import {
   AUTH_USER, 
   UNAUTH_USER, 
   AUTH_ERROR, 
-  FETCH_MESSAGE, 
-  FETCH_RESTAURANT,
-  FETCH_BUSINESS_REVIEWS,
-  FETCH_SCRAPE,
-  GET_LOCATION,
-  GET_TRENDING,
-  GET_HOT_AND_NEW
+  GET_LOCATION
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -122,66 +116,9 @@ export function foursquareAreaSearch(coords) {
   }
 }
 
-export function getTrending() {
-  return function(dispatch) {
-    axios.get(`${ROOT_URL}/trending`)
-      .then(resp => {
-        dispatch({
-          type: GET_TRENDING,
-          payload: resp.data
-        })
-      })
-  }
-}
-
-
-export function fetchRestaurant(area) {
-  // console.log('area: ', area)
-  return function(dispatch) {
-    axios.post(`${ROOT_URL}/api/search`, { area })
-      .then(resp => {
-        dispatch({
-          type: FETCH_RESTAURANT,
-          payload: resp.data
-        })
-        browserHistory.push('/restaurantdetails');
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-}
-
-export function fetchBusinessReviews(id) {
-  return function(dispatch) {
-    axios.post(`${ROOT_URL}/api/reviews`, {id})
-      .then(resp => {
-        dispatch({
-          type: FETCH_BUSINESS_REVIEWS,
-          payload: resp.data
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-}
-
-export function fetchScrape(urlLink) {
-  return function(dispatch) {
-    axios.post(`${ROOT_URL}/api/yelplink`, { urlLink })
-      .then(resp => {
-        dispatch({
-          type: FETCH_SCRAPE,
-          payload: resp.data
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-}
-
+/********************************************************************
+  Auth
+********************************************************************/
 
 /*
 export function login(loginInfo) {

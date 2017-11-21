@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Grid, List, Image } from 'semantic-ui-react';
+import { Button, Grid, List, Image, Label } from 'semantic-ui-react';
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 class TransactionList extends React.Component {
+  scrapeYelp(url) {
+    //console.log('url', url);
+  }
+
   renderListItems(businesses) {
     return businesses.map(business => {
+      //console.log(business)
       const id = business.id;
       const name = business.name;
+      const rating = business.rating;
       const image = business.image_url;
       const url = business.url;
       const address = business.location.display_address[0];
@@ -30,7 +36,7 @@ class TransactionList extends React.Component {
       const categoryStr = categories.join(', ');
 
       return (
-        <List.Item key={id} href={url} target='_blank'>
+        <List.Item key={id}>
           <List.Content floated='right' className='transactions'>
             <List>
               {
@@ -42,10 +48,13 @@ class TransactionList extends React.Component {
               }
             </List>
           </List.Content>
+          <List.Content floated='left' className='yelp-rating rating-circle'>
+            {rating}
+          </List.Content>
           <List.Content>
             <List.Header>{name}, {price}</List.Header>
             <List.Description>{phone}, {address}</List.Description>
-            <List.Description>{categoryStr}</List.Description>
+            <List.Description href={url} target='_blank'>{categoryStr}</List.Description>
           </List.Content>
         </List.Item>
       )
