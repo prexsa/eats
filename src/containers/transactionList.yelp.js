@@ -7,10 +7,6 @@ String.prototype.capitalize = function() {
 }
 
 class TransactionList extends React.Component {
-  scrapeYelp(url) {
-    //console.log('url', url);
-  }
-
   renderListItems(businesses) {
     return businesses.map(business => {
       //console.log(business)
@@ -37,7 +33,7 @@ class TransactionList extends React.Component {
 
       return (
         <List.Item key={id}>
-          <List.Content floated='right' className='transactions'>
+          <List.Content floated='right' className='transactions' href={url} target='_blank'>
             <List>
               {
                 transactions.map(type => {
@@ -52,9 +48,9 @@ class TransactionList extends React.Component {
             {rating}
           </List.Content>
           <List.Content>
-            <List.Header>{name}, {price}</List.Header>
-            <List.Description>{phone}, {address}</List.Description>
-            <List.Description href={url} target='_blank'>{categoryStr}</List.Description>
+            <List.Header className='color629858'>{name}</List.Header>
+            <List.Description><span className='color629858'>{price}</span> - {phone}, {address}</List.Description>
+            <List.Description>{categoryStr}</List.Description>
           </List.Content>
         </List.Item>
       )

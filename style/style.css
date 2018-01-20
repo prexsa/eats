@@ -172,9 +172,13 @@ input:-ms-input-placeholder {
 }
 
 .content .header {
-  color: #629858 !important;
   font-size: 1.38em;
   line-height: 1.35em;
+}
+
+.color629858 {
+  color: #629858 !important;
+  font-weight: bold;
 }
 
 .content .description {
@@ -190,10 +194,10 @@ input:-ms-input-placeholder {
 .yelp-rating {
   width: 50px;
   height: 50px;
-  font-size: 30px;
+  font-size: 26px;
   text-align: center;
   color: #b6818d;
-  margin: 0.2em 0.2em 0 0 !important;
+  margin: 0.5em 0.2em 0 0 !important;
 }
 /*
 .rating-circle {
