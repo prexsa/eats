@@ -8,8 +8,9 @@ import BusinessList from '../containers/businessList.yelp';
 //import BusinessList from '../containers/businessList.foursquare';
 //import BusinessDetails from '../containers/businessDetails.yelp';
 //import Testing from '../containers/Testing';
-import TransactionList from '../containers/transactionList.yelp';
+// import TransactionList from '../containers/transactionList.yelp';
 import Favorites from '../components/Favorites';
+import Wheel from '../components/Wheel';
 
 class App extends Component {
   componentDidMount() {
@@ -21,7 +22,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <TransactionList />
+        <Wheel />
       </div>
     );
   }

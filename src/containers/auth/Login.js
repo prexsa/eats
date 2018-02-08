@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -65,3 +65,4 @@ Login = reduxForm({
 })(Login);
 
 export default Login = connect(null, actions)(Login);
+*/

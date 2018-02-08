@@ -11,6 +11,8 @@ import Register from './containers/auth/Register';
 import Signout from './containers/auth/Signout';
 import RequireAuth from './containers/auth/RequireAuth';
 
+import '../style/style.scss';
+
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -27,9 +29,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="/login" component={Login} />
+        {/*<Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/signout" component={Signout} />
+        <Route path="/signout" component={Signout} />*/}
       </Route>
     </Router>
   </Provider>
